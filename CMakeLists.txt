@@ -3,4 +3,6 @@ project(Monopoly_Board_Simulator)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Monopoly_Board_Simulator main.cpp)
+add_executable(Monopoly_Board_Simulator main.cpp
+        LinkedList.cpp
+)

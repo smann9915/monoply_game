@@ -29,13 +29,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 1
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
+**Date:** 2026-02-26  
+**Entry Type:** Engineering Decision.    
+**Task worked on:** Linked List creation.
+**Error message / symptom (if applicable): N/A**  
+**What I tried:** This was the only way I could think of  
+**Fix / resolution (or final decision): I decided to
+use a for loop and immediately append the data for each space to the 
+list and have the data just be an index from 1 to 40**  
 **Commit(s):**  
 
 ---
