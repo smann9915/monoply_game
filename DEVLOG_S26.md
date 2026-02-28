@@ -38,17 +38,17 @@ Each entry may be one of the following:
 use a for loop and immediately append the data for each space to the 
 list and have the data just be an index from 1 to 40**  
 **Commit(s):**  
-
+Base LL creation
 ---
 
 ### Entry 2
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
+**Date:** 2026-02-28  
+**Entry Type:** Engineering Decision  
+**Task worked on:** Changed my work to the template
+**Issue or decision:** I didn't see the template cpp file so i moved all of my work over and made it compatible with the template.
+**Error message / symptom (if applicable):**  N/A
+**What I tried:** Nothing to "try" just moved work over
+**Fix / resolution (or final decision):** I ended up using my old implementation with the template to complete both core's A and C.
 **Commit(s):**  
 
 ---
