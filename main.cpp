@@ -5,17 +5,27 @@
 
 using namespace std;
 
-LinkedList<Data> *createBoard() {
+struct Player {
+    Node<Data> *position;
+    int timesPassedGo;
+};
+
+//Global Variables
+Player player;
+LinkedList<Data> *board;
+
+void setUpGame() {
     //Creates a LL of 40 spaces that contain data
     //pertaining to what space they are on the board
     Data *a1 = new Data(1);
-    LinkedList<Data> *board = new LinkedList<Data>(a1);
+    board = new LinkedList<Data>(a1);
 
     for (int i = 2; i <= 40; i++) {
         board->append(new Data(i));
     }
 
-    return board;
+    player.position = board->getHead();
+    player.timesPassedGo = 0;
 }
 
 int rollDice() {
@@ -25,16 +35,33 @@ int rollDice() {
     return dice1 + dice2;
 }
 
+void movePlayer() {
+    int spacesToMove = rollDice();
+
+    cout << "You rolled a " << spacesToMove << endl;
+
+    for (int i = 0; i < spacesToMove; i++) {
+        player.position = player.position->next;
+        if (player.position->value->value == 1) {
+            cout << "Player has passed Go";
+            player.timesPassedGo++;
+        }
+    }
+
+    cout << player.position->value->value << endl;
+}
+
 void playTurn() {
     //Rolls the dice
     string answer = "";
     cout << "Enter anything to roll the dice: ";
     cin >> answer;
-    cout << rollDice() << endl;
+
+    movePlayer();
 }
 
 int main() {
-    LinkedList<Data> *board = createBoard();
+    setUpGame();
 
     board->printList();
 
