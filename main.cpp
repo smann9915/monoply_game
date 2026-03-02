@@ -28,17 +28,20 @@ public:
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
         /* TODO: Define overloaded constructor here */
+        this->propertyName = propertyName;
+        this->propertyColor = propertyColor;
+        this->value = value;
+        this->rent = rent;
     }
 
     bool isEqual(MonopolySpace other) {
         /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
-        return false;
+        //return this->propertyName == other.propertyName;
     }
 
     void print() {
-        /* TODO: Define print here */
-        // Example style:
-        // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        cout << "Name: " << propertyName << ", Color " << propertyColor <<
+            ", Value: $" << value << ", Rent " << rent << endl;
     }
 };
 
@@ -127,8 +130,15 @@ public:
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+
+        for (int i = 0; i < values.size(); i++) {
+            bool check = addSpace(values[i]);
+            if (!check) {
+                return i;
+            }
+        }
+
+        return values.size();
     }
 
     // -------------------------------
@@ -169,7 +179,16 @@ public:
     void printBoardOnce() {
         // TODO:
         // - Traverse exactly one full cycle and print each node
-        cout << "printBoardOnce unwritten" << endl;
+        Node<T> *temp = headNode;
+
+        while (true) {
+            temp->data.print();
+            temp = temp->nextNode;
+
+            if (temp == headNode) {
+                break;
+            }
+        }
     }
 
     // -------------------------------
@@ -254,6 +273,13 @@ int main() {
     // -------------------------------
     board.addSpace(MonopolySpace("GO", "None", 0, 0));
 
+    vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("p1", "G", 100, 10));
+    spaces.push_back(MonopolySpace("p2", "G", 100, 10));
+    spaces.push_back(MonopolySpace("p3", "B", 200, 20));
+    board.addMany(spaces);
+
+    board.printBoardOnce();
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
