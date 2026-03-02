@@ -27,7 +27,6 @@ public:
     }
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
-        /* TODO: Define overloaded constructor here */
         this->propertyName = propertyName;
         this->propertyColor = propertyColor;
         this->value = value;
@@ -36,7 +35,7 @@ public:
 
     bool isEqual(MonopolySpace other) {
         /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
-        //return this->propertyName == other.propertyName;
+        return this->propertyName == other.propertyName;
     }
 
     void print() {
@@ -167,18 +166,17 @@ public:
     // Core D: Controlled Board Display
     // -------------------------------
     void printFromPlayer(int count) {
-        // TODO:
-        // - Print exactly 'count' nodes starting from playerNode
-        // - Must not infinite loop
-        // - Must handle empty list
-        // - Output must be deterministic and readable
-        cout << "printFromPlayer unwritten" << endl;
+        if (headNode == nullptr) return;
+        Node<T> *temp = playerNode;
+
+        for (int i = 0; i < count; i++) {
+            temp->data.print();
+            temp = temp->nextNode;
+        }
     }
 
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
-        // TODO:
-        // - Traverse exactly one full cycle and print each node
         Node<T> *temp = headNode;
 
         while (true) {
@@ -277,7 +275,11 @@ int main() {
     spaces.push_back(MonopolySpace("p1", "G", 100, 10));
     spaces.push_back(MonopolySpace("p2", "G", 100, 10));
     spaces.push_back(MonopolySpace("p3", "B", 200, 20));
+    spaces.push_back(MonopolySpace("p3", "B", 200, 20));
     board.addMany(spaces);
+
+    //Is equal check
+    cout << spaces[2].isEqual(spaces[3]) << " + " << spaces[1].isEqual(spaces[3]) << endl;
 
     board.printBoardOnce();
     // -------------------------------
