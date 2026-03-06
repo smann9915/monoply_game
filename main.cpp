@@ -34,7 +34,6 @@ public:
     }
 
     bool isEqual(MonopolySpace other) {
-        /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
         return this->propertyName == other.propertyName;
     }
 
@@ -261,6 +260,58 @@ int rollDice2to12() {
     return (rand() % 6 + 1) + (rand() % 6 + 1);
 }
 
+vector<MonopolySpace> makeBoardVector() {
+    vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("Mediterranean Avenue", "Brown", 100, 10));
+    spaces.push_back(MonopolySpace("Commmunity Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Old Kent Road", "Brown", 100, 10));
+    spaces.push_back(MonopolySpace("Income Tax", "None", 0, 0));
+
+    spaces.push_back(MonopolySpace("Reading Railroad", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Oriental Avenue", "Light Blue", 200, 20));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Vermont Avenue", "Light Blue", 200, 20));
+    spaces.push_back(MonopolySpace("Conneticut Avenue", "Light Blue", 200, 20));
+
+    spaces.push_back(MonopolySpace("Jail", "None", 0, 0));
+    spaces.push_back(MonopolySpace("ST. Charles Place", "Purple", 300, 30));
+    spaces.push_back(MonopolySpace("Electrical Company", "None", 0, 0));
+    spaces.push_back(MonopolySpace("States Avenue", "Purple", 300, 30));
+    spaces.push_back(MonopolySpace("Virginia Avenue", "Purple", 300, 30));
+
+    spaces.push_back(MonopolySpace("Pennsylvania Railroad", "None", 0, 0));
+    spaces.push_back(MonopolySpace("ST. James Place Avenue", "Orange", 400, 40));
+    spaces.push_back(MonopolySpace("Commmunity Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Tennesse Avenue", "Orange", 400, 40));
+    spaces.push_back(MonopolySpace("New York Avenue", "Orange", 400, 40));
+
+    spaces.push_back(MonopolySpace("Free Parking", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Kentucky Avenue", "Red", 500, 50));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Indiana Avenue", "Red", 500, 50));
+    spaces.push_back(MonopolySpace("Illinois Avenue", "Red", 500, 50));
+    spaces.push_back(MonopolySpace("B. & O. Railroad", "None", 0, 0));
+
+    spaces.push_back(MonopolySpace("Atlantic Avenue", "Yellow", 600, 60));
+    spaces.push_back(MonopolySpace("Verton Avenue", "Yellow", 600, 60));
+    spaces.push_back(MonopolySpace("Water Works", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Marvin Gardens", "Yellow", 600, 60));
+    spaces.push_back(MonopolySpace("Go to Jail", "None", 0, 0));
+
+    spaces.push_back(MonopolySpace("Pacific Avenue", "Green", 700, 70));
+    spaces.push_back(MonopolySpace("North Carolina Avenue", "Green", 700, 70));
+    spaces.push_back(MonopolySpace("Community Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Pennsylvania Avenue", "Green", 700, 70));
+    spaces.push_back(MonopolySpace("Short Line", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+
+    spaces.push_back(MonopolySpace("Park Place", "Blue", 800, 80));
+    spaces.push_back(MonopolySpace("Luxury Tax", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Boardwalk", "Blue", 800, 80));
+
+    return spaces;
+}
+
 int main() {
     srand(static_cast<unsigned>(time(nullptr)));
 
@@ -271,11 +322,7 @@ int main() {
     // -------------------------------
     board.addSpace(MonopolySpace("GO", "None", 0, 0));
 
-    vector<MonopolySpace> spaces;
-    spaces.push_back(MonopolySpace("p1", "G", 100, 10));
-    spaces.push_back(MonopolySpace("p2", "G", 100, 10));
-    spaces.push_back(MonopolySpace("p3", "B", 200, 20));
-    spaces.push_back(MonopolySpace("p3", "B", 200, 20));
+    vector<MonopolySpace> spaces = makeBoardVector();
     board.addMany(spaces);
 
     //Is equal check
