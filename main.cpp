@@ -19,11 +19,10 @@ public:
     int rent;
 
     MonopolySpace() {
-        // TODO: define default constructor (recommended)
-        propertyName = "";
-        propertyColor = "";
-        value = 0;
-        rent = 0;
+        propertyName = "Template";
+        propertyColor = "Brown";
+        value = 100;
+        rent = 10;
     }
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
@@ -123,12 +122,6 @@ public:
     // Core B: Add Multiple Spaces at Once
     // -------------------------------
     int addMany(vector<T> values) {
-        // TODO:
-        // - Add sequentially until full
-        // - Stop exactly when you reach MAX_SPACES
-        // - Return number successfully added
-        // - Do not corrupt pointers if capacity is exceeded
-
         for (int i = 0; i < values.size(); i++) {
             bool check = addSpace(values[i]);
             if (!check) {
@@ -177,6 +170,10 @@ public:
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
         Node<T> *temp = headNode;
+
+        if (headNode == nullptr) {
+            return;
+        }
 
         while (true) {
             temp->data.print();
@@ -234,11 +231,23 @@ public:
     // Edge-case helper: countSpaces O(n)
     // -------------------------------
     int countSpaces() {
-        // TODO:
-        // - Must be O(n), traverse exactly once with correct stop condition
-        // - Do NOT rely on nodeCount for this method
-        cout << "countSpaces unwritten" << endl;
-        return 0;
+        if (headNode == nullptr) {
+            return 0;
+        }
+
+        int count = 0;
+        Node<T> *temp = headNode;
+
+        while (true) {
+            count++;
+            temp = temp->nextNode;
+
+            if (temp == headNode) {
+                break;
+            }
+        }
+
+        return count;
     }
 
     // -------------------------------
@@ -249,7 +258,14 @@ public:
         // - Safely delete all nodes
         // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
         // - Then delete like a normal singly linked list
-        cout << "clear unwritten" << endl;
+        tailNode->nextNode = nullptr;
+        Node<T> *temp = headNode;
+
+        while (temp != nullptr) {
+            temp = headNode->nextNode;
+            delete headNode;
+            headNode = temp;
+        }
     }
 };
 
@@ -343,6 +359,11 @@ int main() {
 
         cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
     }
+
+    //Destroy the Board
+    board.clear();
+    board.printBoardOnce();
+    cout << board.countSpaces();
 
     // -------------------------------
     // Advanced Feature Demos (students choose path)
