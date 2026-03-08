@@ -80,21 +80,22 @@ AddMany() and printOnce()
 ### Entry 5
 **Date:** 2026-03-07  
 **Entry Type:** Bug Fix 
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
+**Task worked on:**  printBoardOnce() \ 
+**Issue or decision:**  The while loop couldn't handle an empty list \
+**Error message / symptom (if applicable):**  returned a garbage exit code as the program seemed to time out. \
+**What I tried:**  Easy fix the resolution was my only attempt. \
+**Fix / resolution (or final decision):**  Before the while loop starts we check if the headNode is a nullptr and return if that is true. \
 **Commit(s):**  
-
+countSpaces() and clear() + edge case fix printBoardOnce()
 ---
 
 ### Entry 6
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
+**Date:** 2026-03-07  
+**Entry Type:** Edge Case \ 
+**Task worked on:**  mirrorBoard() - Advanced B \
+**Issue or decision:**  I was having an issue with the headNode being wrongly placed at the start even after the reversing of the list happened \
+**Error message / symptom (if applicable):**  N/A
+**What I tried:**  I initially tried setting only the headNode to the next node but, I realized after messing with the board as it was mirrored that tailNode was still the last added node. \
+**Fix / resolution (or final decision):**  At the end of the mirror method we set the tailNode = headNode before we set headNode so that the end of the old list is the start of the new one. \
 **Commit(s):**  
+mirrorBoard()

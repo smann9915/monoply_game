@@ -224,7 +224,28 @@ public:
         // - Preserve circular structure
         // - Correctly handle empty list and single-node list
         // - Player cursor must remain on the same logical space after reversal
-        cout << "mirrorBoard unwritten" << endl;
+
+        if (headNode == nullptr) {
+            return;
+        }
+        Node<T> *prev = tailNode;
+        Node<T> *current = headNode;
+        Node<T> *next = current->nextNode;
+
+        while (true){
+            next = current->nextNode;
+            current->nextNode = prev;
+
+            prev = current;
+            current = next;
+
+            if (current == headNode) {
+                break;
+            }
+        }
+
+        //tailNode = headNode;
+        headNode = headNode->nextNode;
     }
 
     // -------------------------------
@@ -360,20 +381,14 @@ int main() {
         cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
     }
 
+    //Mirrors then prints the mirrored board
+    board.mirrorBoard();
+    board.printBoardOnce();
+
     //Destroy the Board
     board.clear();
     board.printBoardOnce();
     cout << board.countSpaces();
-
-    // -------------------------------
-    // Advanced Feature Demos (students choose path)
-    // -------------------------------
-    // Option A examples:
-    // board.removeByName("Baltic Avenue");
-    // vector<string> brownProps = board.findByColor("Brown");
-    //
-    // Option B example:
-    // board.mirrorBoard();
 
     return 0;
 }
