@@ -84,17 +84,6 @@ public:
     }
 
     // -------------------------------
-    // Board Construction Policy (Reminder)
-    // -------------------------------
-    // Spaces are added during board construction BEFORE gameplay.
-    // You choose how to construct the board:
-    // - hardcode spaces, read from file, or generate programmatically
-    // The only non-negotiable requirement:
-    // - enforce MAX_SPACES
-    // - maintain circular integrity
-    // -------------------------------
-
-    // -------------------------------
     // Core A: Add a Space with Capacity Enforcement
     // -------------------------------
     bool addSpace(T value) {
@@ -186,45 +175,9 @@ public:
     }
 
     // -------------------------------
-    // Advanced Option A (Level 1): removeByName
-    // -------------------------------
-    bool removeByName(string name) {
-        // TODO:
-        // - Delete FIRST matching node
-        // - Must handle:
-        //   - deleting head
-        //   - deleting tail
-        //   - deleting the only-node list
-        // - Maintain circular link tail->next=head
-        // - If playerNode points to deleted node, move playerNode to a safe node
-        // - nodeCount--
-        cout << "removeByName unwritten" << endl;
-        return false;
-    }
-
-    // -------------------------------
-    // Advanced Option A (Level 1): findByColor
-    // -------------------------------
-    vector<string> findByColor(string color) {
-        // TODO:
-        // - Traverse ring exactly once
-        // - Collect matching names in vector<string>
-        // - Return matches
-        cout << "findByColor unwritten" << endl;
-        vector<string> matches;
-        return matches;
-    }
-
-    // -------------------------------
     // Advanced Option B (Level 2): Mirror the Board (Circular Reversal)
     // -------------------------------
     void mirrorBoard() {
-        // TODO:
-        // - Reverse the direction of the circular list by reversing next pointers
-        // - Preserve circular structure
-        // - Correctly handle empty list and single-node list
-        // - Player cursor must remain on the same logical space after reversal
-
         if (headNode == nullptr) {
             return;
         }
@@ -275,10 +228,6 @@ public:
     // Cleanup
     // -------------------------------
     void clear() {
-        // TODO:
-        // - Safely delete all nodes
-        // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
-        // - Then delete like a normal singly linked list
         tailNode->nextNode = nullptr;
         Node<T> *temp = headNode;
 
@@ -299,6 +248,7 @@ int rollDice2to12() {
 
 vector<MonopolySpace> makeBoardVector() {
     vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
     spaces.push_back(MonopolySpace("Mediterranean Avenue", "Brown", 100, 10));
     spaces.push_back(MonopolySpace("Commmunity Chest", "None", 0, 0));
     spaces.push_back(MonopolySpace("Old Kent Road", "Brown", 100, 10));
@@ -357,15 +307,10 @@ int main() {
     // -------------------------------
     // Board Construction Phase
     // -------------------------------
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
 
     vector<MonopolySpace> spaces = makeBoardVector();
     board.addMany(spaces);
 
-    //Is equal check
-    cout << spaces[2].isEqual(spaces[3]) << " + " << spaces[1].isEqual(spaces[3]) << endl;
-
-    board.printBoardOnce();
     // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
@@ -381,14 +326,11 @@ int main() {
         cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
     }
 
-    //Mirrors then prints the mirrored board
+    //Mirrors the board
     board.mirrorBoard();
-    board.printBoardOnce();
 
     //Destroy the Board
     board.clear();
-    board.printBoardOnce();
-    cout << board.countSpaces();
 
     return 0;
 }
