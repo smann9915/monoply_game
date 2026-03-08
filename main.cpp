@@ -32,6 +32,7 @@ public:
         this->rent = rent;
     }
 
+    //Compares spaces by there propertyName
     bool isEqual(MonopolySpace other) {
         return this->propertyName == other.propertyName;
     }
@@ -156,13 +157,13 @@ public:
         }
     }
 
-    // Optional helper: print full board once (one full cycle)
+    // Print full board once (one full cycle)
     void printBoardOnce() {
-        Node<T> *temp = headNode;
-
         if (headNode == nullptr) {
             return;
         }
+
+        Node<T> *temp = headNode;
 
         while (true) {
             temp->data.print();
@@ -185,6 +186,7 @@ public:
         Node<T> *current = headNode;
         Node<T> *next = current->nextNode;
 
+        //Reverses the linked list
         while (true){
             next = current->nextNode;
             current->nextNode = prev;
@@ -197,7 +199,8 @@ public:
             }
         }
 
-        //tailNode = headNode;
+        //Flip what nodes are the head and what node is the tail
+        tailNode = headNode;
         headNode = headNode->nextNode;
     }
 
@@ -228,9 +231,11 @@ public:
     // Cleanup
     // -------------------------------
     void clear() {
+        //Disconnect the Circular Structure of the List
         tailNode->nextNode = nullptr;
         Node<T> *temp = headNode;
 
+        //Destroys the Linked list as if it wasn't circular
         while (temp != nullptr) {
             temp = headNode->nextNode;
             delete headNode;
@@ -326,8 +331,10 @@ int main() {
         cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
     }
 
-    //Mirrors the board
+    //Mirrors the board and prints the mirrored board
+    cout << endl << "Mirrored Board:" << endl;
     board.mirrorBoard();
+    board.printBoardOnce();
 
     //Destroy the Board
     board.clear();

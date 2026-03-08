@@ -11,7 +11,9 @@
 ---
 
 ### Data Structures Used
-#### Ciruclar Linked List: 
+#### Circular Linked List: 
+- This Data Structure connects nodes that are not next to each other in memory.
+- To make it circular we always have the last node point to the first
 - Used to allow us to track out player's position and loop around the Board
 
 ---
